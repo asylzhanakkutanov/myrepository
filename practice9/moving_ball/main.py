@@ -7,6 +7,7 @@ WIDTH, HEIGHT = 1200, 700
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Moving Ball Game")
 
+
 clock = pygame.time.Clock()
 
 ball = Ball(300, 200, screen_size=(WIDTH, HEIGHT))

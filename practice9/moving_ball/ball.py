@@ -6,6 +6,7 @@ class Ball:
         self.speed = speed
         self.screen_width, self.screen_height = screen_size
 
+
     def move(self, dx, dy):
         new_x = self.x + dx
         new_y = self.y + dy
