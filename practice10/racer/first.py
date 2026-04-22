@@ -37,8 +37,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH // 2
         self.rect.bottom = HEIGHT
         self.speed = 5
-        # or
-        # self.rect.midbottom = (WIDTH // 2, HEIGHT)
 
     def move(self):
         keys = pygame.key.get_pressed()
