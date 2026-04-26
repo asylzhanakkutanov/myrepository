@@ -13,31 +13,31 @@ image_background = pygame.image.load('racer/resources/AnimatedStreet.png')
 image_player = pygame.image.load('racer/resources/Player.png')
 image_enemy = pygame.image.load('racer/resources/Enemy.png')
 coin_image = pygame.image.load('racer/resources/dollar.png').convert_alpha()
-
-collected = 0
+#load image convert_alpha for keep transparency
+collected = 0 #collected coin by default
 
 pygame.mixer.music.load('racer/resources/background.wav')
-pygame.mixer.music.play(-1)
+pygame.mixer.music.play(-1) # load music
 
 sound_crash = pygame.mixer.Sound('racer/resources/crash.wav')
 
 font = pygame.font.SysFont("Verdana", 60)
 fontt = pygame.font.SysFont("Verdana", 20)
-
+#load font for game
 image_game_over = font.render("Game Over", True, "black")
 image_game_over_rect = image_game_over.get_rect(center = (WIDTH // 2, HEIGHT // 2))
 score = fontt.render(f"Score: {collected}", True, "black")
-score_rect = score.get_rect(center = (325, 10)) 
+score_rect = score.get_rect(center = (325, 10)) #return text Game Over and number of collected coins at the end
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
-        super().__init__()
+        super().__init__()# initialize parent sprite class
         self.image = image_player
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect()# Get rectangle for position/collision
         self.rect.centerx = WIDTH // 2
         self.rect.bottom = HEIGHT
         self.speed = 5
-
+#class player 
     def move(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
@@ -48,6 +48,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = 0
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
+        #keep player inside screen right and left boundary
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
@@ -55,17 +56,16 @@ class Enemy(pygame.sprite.Sprite):
         self.image = image_enemy
         self.rect = self.image.get_rect()
         self.speed = 10
-        # or
-        # self.rect.midbottom = (WIDTH // 2, HEIGHT)
+        
 
     def generate_random_rect(self):
         self.rect.left = random.randint(0, WIDTH - self.rect.w)
-        self.rect.bottom = 0
+        self.rect.bottom = 0 #generate random
 
     def move(self):
         self.rect.move_ip(0, self.speed)
         if self.rect.top > HEIGHT:
-            self.generate_random_rect()
+            self.generate_random_rect() #if goes under the screen generate new
 
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
@@ -97,6 +97,7 @@ coin_sprites = pygame.sprite.Group()
 all_sprites.add(player, enemy, coin)
 enemy_sprites.add(enemy)
 coin_sprites.add(coin)
+#create sprite groups and add sprites
 while running: # game loop
     for event in pygame.event.get(): # event loop
         if event.type == pygame.QUIT:
