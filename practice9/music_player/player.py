@@ -5,7 +5,7 @@ class MusicPlayer:
     def __init__(self):
         pygame.mixer.init()
 
-        # 🔥 файл тұрған папканы дәл табамыз
+        
         self.base_path = os.path.dirname(__file__)
         self.music_folder = os.path.join(self.base_path, "music")
 
@@ -16,7 +16,7 @@ class MusicPlayer:
     def load(self):
         path = os.path.join(self.music_folder, self.playlist[self.index])
 
-        print("Loading:", path)  # 🔥 debug үшін (өте пайдалы)
+        print("Loading:", path) 
 
         pygame.mixer.music.load(path)
 
